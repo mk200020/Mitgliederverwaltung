@@ -120,7 +120,7 @@
 	   switch(month){
 	   case Calendar.JANUARY: monthString="Januar";break;
 	   case Calendar.FEBRUARY: monthString="Februar";break;
-	   case Calendar.MARCH: monthString="M‰rz";break;
+	   case Calendar.MARCH: monthString="M√§rz";break;
 	   case Calendar.APRIL: monthString="April";break;
 	   case Calendar.MAY: monthString="Mai";break;
 	   case Calendar.JUNE: monthString="Juni";break;
@@ -222,7 +222,7 @@
        }
 
 	   
-	   System.out.println(Ausgabe);
+	//   System.out.println(Ausgabe);
 	   
 	   
 	   return Ausgabe;
@@ -315,6 +315,6 @@
 
 
 </table>
-<p>Die blau gef‰rbte Zahl zeigt wieviele Mitglieder in der Datenbank, das Spiel an dem Tag gucken</p>
+<p>Die blau gef√§rbte Zahl zeigt wieviele Mitglieder in der Datenbank, das Spiel an dem Tag gucken</p>
 </body>
 </html>
