@@ -19,6 +19,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
+ * 
+ * @author mohamed kasmi (mk200020@gmail.com)
+ *
+ */
+
+/**
  * Servlet implementation class MitgliederEntfernenServlet
  */
 @WebServlet("/entfernen")
@@ -59,10 +65,10 @@ public class MitgliederEntfernenServlet extends HttpServlet {
     	     if(password.equals("network")) {
     	     int results1=stmt.executeUpdate("delete from Mitgliederverwaltung.Spiel Where MitgliederId="+ID_String);
     	     int results2 = stmt.executeUpdate("delete from " + "Mitgliederverwaltung.Mitglied where ID="+ID_String);
-    	     message="<p style=\"color:green;\">Sie sind berechtigt,die Transaktion durchzuführen</p>";
+    	     message="<p style=\"color:green;\">Sie sind berechtigt,die Transaktion durchzufÃ¼hren</p>";
     	     session.setAttribute("message", message);
     	     }else {
-    	    	 message="<p style=\"color:red;\">Sie sind nicht berechtigt,die Transaktion durchzuführen</p>";
+    	    	 message="<p style=\"color:red;\">Sie sind nicht berechtigt,die Transaktion durchzufÃ¼hren</p>";
     	    	 session.setAttribute("message", message);
     	    	 
     	     }
