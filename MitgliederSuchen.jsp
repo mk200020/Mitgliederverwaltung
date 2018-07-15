@@ -18,12 +18,13 @@
 <h1>Mitgliederverwaltung-Hertha</h1>
 <nav>
   <ul>
-     <li><a href="index.jsp">home</a></li>
+     <li><a href="index.jsp?password=dummy">home</a></li>
      <li><a href="NeueMitglieder.jsp">Neues Mitglied</a></li>
      <li><a href="Spielplan.jsp">Neues Spiel eintragen</a></li>
      <li><a href="liste">Mitgliederliste</a></li>
      <li><a href="Kalender.jsp?n=0&m=0">Kalender</a></li>
      <li><a href="MitgliederSuchen.jsp">Mitglieder suchen</a></li>
+     <li><a href="Austritt.jsp">Mitglieder Austritt</a></li>
   </ul>
 </nav>
 <form action="suchen" method="post">
