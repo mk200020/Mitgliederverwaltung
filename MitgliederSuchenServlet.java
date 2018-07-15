@@ -48,7 +48,7 @@ public class MitgliederSuchenServlet extends HttpServlet {
         out.print("<html><head><title>Gefundene Mitglieder</title></head><body>");
         out.print("<h1>Gefundene Mitglieder oder nicht gefundene Mitglieder</h1>");
         out.print("<h6>Dies sind fiktive Daten</h6>");
-        out.print("<a href=\"index.jsp\">Zurück zur Hauptseite</a>");
+        out.print("<a href=\"index.jsp?password=dummy\">Zurück zur Hauptseite</a>");
         
         Connection con1 = null;
         Connection con2=  null;
