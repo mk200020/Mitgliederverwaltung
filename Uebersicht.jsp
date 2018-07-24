@@ -13,7 +13,6 @@
     ArrayList<java.sql.Date> Eintrittsdatum_liste=null; //new ArrayList<java.sql.Date>();
     ArrayList<java.sql.Date> Austrittsdatum_liste=null; //new ArrayList<java.sql.Date>();
     ArrayList<Long> Zeitdifferenz=null; //new ArrayList<Long>();
-    ArrayList<Integer> Monate=null;
     double prozent1,prozent2;
 %>  
 <!DOCTYPE html>
@@ -46,7 +45,6 @@
  Eintrittsdatum_liste=new ArrayList<java.sql.Date>();
  Austrittsdatum_liste=new ArrayList<java.sql.Date>();
  Zeitdifferenz=new ArrayList<Long>();
- Monate=new ArrayList<Integer>();
  
  
  Connection con = ((DataSource)InitialContext.doLookup("jdbc/Mitgliederverwaltung")).getConnection();
@@ -156,8 +154,8 @@ for(int i=0;i<ID_liste.size();i++) {
 	//System.out.println("prozent2="+prozent2);
 	do {
 	R = (int)(Math.random()*256);
-    G = (int)(Math.random()*256);
-    B= (int)(Math.random()*256);
+        G = (int)(Math.random()*256);
+        B= (int)(Math.random()*256);
 	} while (R<100 || G< 100 || B<100);
     color = new java.awt.Color(R, G, B);
     farbe="#"+Integer.toHexString(color.getRed())+Integer.toHexString(color.getGreen())+Integer.toHexString(color.getBlue());
