@@ -12,7 +12,9 @@
     ArrayList<String> Vorname_liste=null; //new ArrayList<String>();
     ArrayList<java.sql.Date> Eintrittsdatum_liste=null; //new ArrayList<java.sql.Date>();
     ArrayList<java.sql.Date> Austrittsdatum_liste=null; //new ArrayList<java.sql.Date>();
-    ArrayList<Long> Zeitdifferenz=null; //new ArrayList<Long>();    
+    ArrayList<Long> Zeitdifferenz=null; //new ArrayList<Long>();
+    ArrayList<Integer> Monate=null;
+    double prozent1,prozent2;
 %>  
 <!DOCTYPE html>
 <html>
@@ -32,7 +34,7 @@
      <li><a href="Kalender.jsp?n=0&m=0">Kalender</a></li>
      <li><a href="MitgliederSuchen.jsp">Mitglieder suchen</a></li>
      <li><a href="Austritt.jsp">Mitglieder Austritt</a></li>
-     <li><a href="Uebersicht.jsp">Übersicht</a></li>
+     <li><a href="Uebersicht.jsp">Ãœbersicht</a></li>
   </ul>
 </nav>
 <br>
@@ -44,6 +46,7 @@
  Eintrittsdatum_liste=new ArrayList<java.sql.Date>();
  Austrittsdatum_liste=new ArrayList<java.sql.Date>();
  Zeitdifferenz=new ArrayList<Long>();
+ Monate=new ArrayList<Integer>();
  
  
  Connection con = ((DataSource)InitialContext.doLookup("jdbc/Mitgliederverwaltung")).getConnection();
@@ -89,6 +92,8 @@
  
 %>
 <%
+ int R,G,B;
+ long x,y;
 java.util.Date date1 = new java.util.Date();
 
 Calendar calendar = new GregorianCalendar();
@@ -99,7 +104,7 @@ year1=year1-1;
 java.util.Date date2 = new java.util.Date();
 calendar.setTime(date2);
 int year2 = calendar.get(Calendar.YEAR);
-year2=year2+2;
+year2=year2+1;
 
 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -116,39 +121,52 @@ try {
 
 java.sql.Date sqlDate1=new java.sql.Date(date1.getTime());
 java.sql.Date sqlDate2=new java.sql.Date(date2.getTime());
-
-int R = (int)(Math.random()*256);
-int G = (int)(Math.random()*256);
-int B= (int)(Math.random()*256);
+do {
+  R = (int)(Math.random()*256);
+  G = (int)(Math.random()*256);
+  B= (int)(Math.random()*256);
+} while (R<100 || G<100 || B<100);
 java.awt.Color color = new java.awt.Color(R, G, B);
 String farbe="#"+Integer.toHexString(color.getRed())+Integer.toHexString(color.getGreen())+Integer.toHexString(color.getBlue());
-System.out.println("farbe="+farbe);
+//System.out.println("farbe="+farbe);
 
 
 %>
 Zeitachse vom <%=sqlDate1%> bis <%=sqlDate2%>
-<hr style="position:absolute;left:0px;background-color:<%=farbe%>;height:1px;width:100%;text-align:left;">
-<br><br><br><br><br>
+<img src="resources/img/monate.png" align="left" border="0px">
+<br><br><br>
+<hr style="position:absolute;left:40px;background-color:<%=farbe%>;height:1px;width:1005px;text-align:left;">
+
 <%
 long Zeitdifferenzmax=sqlDate2.getTime()-sqlDate1.getTime();
 //System.out.println("Zeitdifferenzmax="+Zeitdifferenzmax);
 for(int i=0;i<ID_liste.size();i++) { 
-	out.print("<br><br><br><br>"+Name_liste.get(i)+","+Vorname_liste.get(i)+" vom "+Eintrittsdatum_liste.get(i)+" bis "+Austrittsdatum_liste.get(i));
+	
 	long Zeit1=java.lang.Math.abs(Zeitdifferenz.get(i));
 	long Zeit2=java.lang.Math.abs(sqlDate1.getTime()-Eintrittsdatum_liste.get(i).getTime());
 	//System.out.println("Zeit="+Zeit1);
-	double prozent1=((double)Zeit1/Zeitdifferenzmax)*100;
-	double prozent2=((double)Zeit2/Zeitdifferenzmax)*100;
+	prozent1=((double)Zeit1/Zeitdifferenzmax)*100;
+	prozent2=((double)Zeit2/Zeitdifferenzmax)*100;
+	x=Math.round((prozent1*1005)/100);
+	//System.out.println("x="+x);
+	y=Math.round((prozent2*1005)/100)+40;
+    //System.out.println("y="+y);
+	out.print("<br><h6 align=\"center\">"+Name_liste.get(i)+","+Vorname_liste.get(i)+" vom "+Eintrittsdatum_liste.get(i)+" bis "+Austrittsdatum_liste.get(i)+"</h6>");
 	//System.out.println("prozent1="+prozent1);
 	//System.out.println("prozent2="+prozent2);
+	do {
 	R = (int)(Math.random()*256);
     G = (int)(Math.random()*256);
     B= (int)(Math.random()*256);
+	} while (R<100 || G< 100 || B<100);
     color = new java.awt.Color(R, G, B);
     farbe="#"+Integer.toHexString(color.getRed())+Integer.toHexString(color.getGreen())+Integer.toHexString(color.getBlue());
-    System.out.println("farbe="+farbe);
-	out.print("<br><br><hr style=\"position:absolute; left:"+prozent2+"%;background-color:"+farbe+";height:1px;width:"+prozent1+"%;text-align:left;\">");
-	
+    //System.out.println("farbe="+farbe);
+    
+    //out.print("<hr style=\"position:absolute; left:25px;background-color:"+farbe+";height:1px;width:"+prozent1+"%;text-align:left;\">");
+    
+	out.print("<hr style=\"position:absolute;left:"+y+"px;background-color:"+farbe+";height:1px;width:"+x+"px;text-align:left;\">");
+    
 }
 %>
 </body>
